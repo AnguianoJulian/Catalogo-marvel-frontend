@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <h2>Agregar Nueva Película</h2>
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="movie.title" name="title" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="year" class="form-label">Año</label>
+      <input type="number" id="year" class="form-control" [(ngModel)]="movie.year" name="year" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="synopsis" class="form-label">Sinopsis</label>
+      <textarea id="synopsis" class="form-control" [(ngModel)]="movie.synopsis" name="synopsis" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="cover" class="form-label">Portada</label>
+      <input type="file" id="cover" class="form-control" (change)="onFileSelected($event)">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a routerLink="/peliculas" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>

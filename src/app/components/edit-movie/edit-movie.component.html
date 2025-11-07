@@ -1,0 +1,22 @@
+<div class="container my-5">
+  <h2>Editar Película</h2>
+  <form (ngSubmit)="updateMovie()" class="mt-4">
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control" [(ngModel)]="movie.title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Año</label>
+      <input type="number" class="form-control" [(ngModel)]="movie.year" name="year" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Sinopsis</label>
+      <textarea class="form-control" [(ngModel)]="movie.synopsis" name="synopsis" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Imagen (URL)</label>
+      <input type="text" class="form-control" [(ngModel)]="movie.cover" name="cover" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  </form>
+</div>
