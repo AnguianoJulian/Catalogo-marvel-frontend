@@ -1,26 +1,19 @@
-<div class="container my-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Catálogo de Películas</h2>
-    <a routerLink="/peliculas/agregar" class="btn btn-success">Agregar Película</a>
-  </div>
+<h2 class="text-center mb-4">Catálogo de Películas</h2>
 
-  <div class="row g-4">
-    <div class="col-md-4" *ngFor="let movie of movies">
-      <div class="card shadow-sm h-100">
-        <img [src]="'https://catalogo-marvel-2.onrender.com/storage/covers/' + movie.cover" 
-        alt="{{ movie.title }}" 
-        class="card-img-top" 
-        style="height: 300px; object-fit: cover;">
+<div *ngIf="peliculas.length === 0" class="alert alert-info text-center">
+  No hay películas disponibles.
+</div>
 
-
-        <div class="card-body">
-          <h5 class="card-title">
-            <a [routerLink]="['/peliculas', movie.id]" class="text-decoration-none">
-              {{ movie.title }}
-            </a>
-          </h5>
-          <p>{{ movie.year }}</p>
-        </div>
+<div class="row row-cols-1 row-cols-md-3 g-4" *ngIf="peliculas.length > 0">
+  <div class="col" *ngFor="let pelicula of peliculas">
+    <div class="card h-100 shadow-sm">
+      <img [src]="pelicula.imagen" class="card-img-top" alt="{{ pelicula.titulo }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ pelicula.titulo }}</h5>
+        <p class="card-text">{{ pelicula.descripcion }}</p>
+      </div>
+      <div class="card-footer text-muted text-center">
+        Año: {{ pelicula.anio }}
       </div>
     </div>
   </div>

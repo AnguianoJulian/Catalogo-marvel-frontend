@@ -1,30 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
-  selector: 'app-edit-movie',
-  templateUrl: './edit-movie.component.html'
+  selector: 'app-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.css']
 })
-export class EditMovieComponent implements OnInit {
-  movie: any = {};
-  id!: number;
+export class MoviesComponent implements OnInit {
+  movies: any[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private movieService: MovieService
-  ) {}
+  constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id')!;
-    this.movieService.getMovie(this.id).subscribe((data: any) => this.movie = data);
+    this.cargarPeliculas();
   }
 
-  updateMovie() {
-    this.movieService.updateMovie(this.id, this.movie).subscribe(() => {
-      alert('Película actualizada correctamente');
-      this.router.navigate(['/peliculas']);
+  cargarPeliculas(): void {
+    this.movieService.getMovies().subscribe({
+      next: (data: any[]) => {
+        this.movies = data;
+      },
+      error: (err: any) => {
+        console.error('Error al cargar películas:', err);
+      }
     });
   }
 }
