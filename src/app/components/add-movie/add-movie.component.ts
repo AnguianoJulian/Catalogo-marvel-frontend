@@ -32,9 +32,14 @@ export class AddMovieComponent {
       formData.append('cover', this.selectedFile);
     }
 
-    this.movieService.addMovie(formData).subscribe(() => {
-      alert('Película agregada correctamente');
-      this.router.navigate(['/peliculas']);
+    this.movieService.addMovie(formData).subscribe({
+      next: () => {
+        alert('Película agregada correctamente');
+        this.router.navigate(['/peliculas']);
+      },
+      error: (err: any) => {
+        console.error('Error al agregar película:', err);
+      }
     });
   }
 }

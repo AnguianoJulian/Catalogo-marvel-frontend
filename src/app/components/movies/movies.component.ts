@@ -7,7 +7,7 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-  movies: any[] = [];
+  peliculas: any[] = [];
 
   constructor(private movieService: MovieService) {}
 
@@ -18,10 +18,10 @@ export class MoviesComponent implements OnInit {
   cargarPeliculas(): void {
     this.movieService.getMovies().subscribe({
       next: (data: any[]) => {
-        this.movies = data;
+        this.peliculas = data;
       },
-      error: (err: any) => {
-        console.error('Error al cargar películas:', err);
+      error: (error: any) => {
+        console.error('Error al cargar películas:', error);
       }
     });
   }

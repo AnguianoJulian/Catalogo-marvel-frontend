@@ -27,23 +27,24 @@ export class MovieDetailComponent implements OnInit {
       next: (data: any) => {
         this.movie = data;
       },
-      error: (err: any) => {
-        console.error('Error al obtener película:', err);
+      error: (error: any) => {
+        console.error('Error al obtener película:', error);
       }
     });
   }
 
-  eliminarPelicula(): void {
-    if (confirm('¿Seguro que quieres eliminar esta película?')) {
-      this.movieService.deleteMovie(this.id).subscribe({
-        next: () => {
-          alert('Película eliminada con éxito');
-          this.router.navigate(['/peliculas']);
-        },
-        error: (err: any) => {
-          console.error('Error al eliminar la película:', err);
-        }
-      });
-    }
+deleteMovie(): void {
+  if (confirm('¿Seguro que quieres eliminar esta película?')) {
+    this.movieService.deleteMovie(this.id).subscribe({
+      next: () => {
+        alert('Película eliminada con éxito');
+        this.router.navigate(['/peliculas']);
+      },
+      error: (err: any) => {
+        console.error('Error al eliminar la película:', err);
+      }
+    });
   }
+}
+
 }
