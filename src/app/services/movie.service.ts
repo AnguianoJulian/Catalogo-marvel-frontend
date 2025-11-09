@@ -11,27 +11,22 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las películas
   getMovies(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/movies`);
   }
 
-  // Obtener una película por ID
   getMovie(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/movies/${id}`);
   }
 
-  // Agregar película
   addMovie(movie: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/movies`, movie);
   }
 
-  // Actualizar película
   updateMovie(id: number, movie: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/movies/${id}`, movie);
   }
 
-  // Eliminar película
   deleteMovie(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/movies/${id}`);
   }
