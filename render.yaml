@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: catalogo-marvel-frontend2
-    env: static
-    buildCommand: npm run build -- --configuration=production
-    staticPublishPath: dist/catalogo-frontend2/browser
-    envVars:
-      - key: NODE_VERSION
-        value: 18

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "angular.json", "use": "@vercel/angular" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "https://catalogo-marvel-2.onrender.com/api/$1" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}

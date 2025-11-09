@@ -7,21 +7,21 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-  peliculas: any[] = [];
+  movies: any[] = [];
+  errorMessage = '';
 
   constructor(private movieService: MovieService) {}
 
-  ngOnInit(): void {
-    this.cargarPeliculas();
+  ngOnInit() {
+    this.loadMovies();
   }
 
-  cargarPeliculas(): void {
+  loadMovies() {
     this.movieService.getMovies().subscribe({
-      next: (data: any[]) => {
-        this.peliculas = data;
-      },
-      error: (error: any) => {
-        console.error('Error al cargar películas:', error);
+      next: (data) => this.movies = data,
+      error: (err) => {
+        console.error('Error al cargar películas:', err);
+        this.errorMessage = 'No se pudieron cargar las películas';
       }
     });
   }
