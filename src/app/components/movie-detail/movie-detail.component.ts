@@ -5,7 +5,6 @@ import { MovieService } from '../../services/movie.service';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
   movie: any;
@@ -19,32 +18,17 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.obtenerPelicula();
-  }
-
-  obtenerPelicula(): void {
     this.movieService.getMovie(this.id).subscribe({
-      next: (data: any) => {
-        this.movie = data;
-      },
-      error: (error: any) => {
-        console.error('Error al obtener película:', error);
-      }
+      next: data => this.movie = data,
+      error: err => console.error('Error al obtener película:', err)
     });
   }
 
-deleteMovie(): void {
-  if (confirm('¿Seguro que quieres eliminar esta película?')) {
+  deleteMovie(): void {
+    if (!confirm('¿Seguro que quieres eliminar esta película?')) return;
     this.movieService.deleteMovie(this.id).subscribe({
-      next: () => {
-        alert('Película eliminada con éxito');
-        this.router.navigate(['/peliculas']);
-      },
-      error: (err: any) => {
-        console.error('Error al eliminar la película:', err);
-      }
+      next: () => this.router.navigate(['/peliculas']),
+      error: err => console.error('Error al eliminar:', err)
     });
   }
-}
-
 }

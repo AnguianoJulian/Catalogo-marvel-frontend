@@ -7,39 +7,14 @@ import { MovieService } from '../../services/movie.service';
   templateUrl: './add-movie.component.html'
 })
 export class AddMovieComponent {
-  movie = {
-    title: '',
-    year: '',
-    synopsis: '',
-    cover: ''
-  };
-
-  selectedFile: File | null = null;
+  movie = { title: '', year: '', synopsis: '', cover: '' };
 
   constructor(private movieService: MovieService, private router: Router) {}
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
   onSubmit() {
-    const formData = new FormData();
-    formData.append('title', this.movie.title);
-    formData.append('year', this.movie.year);
-    formData.append('synopsis', this.movie.synopsis);
-
-    if (this.selectedFile) {
-      formData.append('cover', this.selectedFile);
-    }
-
-    this.movieService.addMovie(formData).subscribe({
-      next: () => {
-        alert('Película agregada correctamente');
-        this.router.navigate(['/peliculas']);
-      },
-      error: (err: any) => {
-        console.error('Error al agregar película:', err);
-      }
+    this.movieService.addMovie(this.movie).subscribe({
+      next: () => this.router.navigate(['/peliculas']),
+      error: err => console.error('Error al agregar:', err)
     });
   }
 }

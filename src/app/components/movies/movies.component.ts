@@ -4,25 +4,19 @@ import { MovieService } from '../../services/movie.service';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
   movies: any[] = [];
-  errorMessage = '';
-
   constructor(private movieService: MovieService) {}
 
-  ngOnInit() {
-    this.loadMovies();
+  ngOnInit(): void {
+    this.load();
   }
 
-  loadMovies() {
+  load(): void {
     this.movieService.getMovies().subscribe({
-      next: (data) => this.movies = data,
-      error: (err) => {
-        console.error('Error al cargar películas:', err);
-        this.errorMessage = 'No se pudieron cargar las películas';
-      }
+      next: data => this.movies = data,
+      error: err => console.error('Error al cargar películas:', err)
     });
   }
 }
