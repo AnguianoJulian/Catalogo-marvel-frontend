@@ -27,4 +27,4 @@ import { AddMovieComponent } from './components/add-movie/add-movie.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

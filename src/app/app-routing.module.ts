@@ -9,12 +9,12 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'peliculas', component: MoviesComponent },
   { path: 'peliculas/:id', component: MovieDetailComponent },
-  { path: 'agregar', component: AddMovieComponent },
+  { path: 'peliculas/agregar', component: AddMovieComponent },
   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
