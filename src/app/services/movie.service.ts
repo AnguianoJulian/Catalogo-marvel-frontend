@@ -7,7 +7,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MovieService {
-  // 🔧 Debe incluir el /api directamente
   private apiUrl = `${environment.apiUrl}/movies`;
 
   constructor(private http: HttpClient) {}
