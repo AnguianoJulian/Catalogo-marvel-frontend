@@ -1,10 +1,16 @@
 {
   "version": 2,
   "builds": [
-    { "src": "angular.json", "use": "@vercel/angular" }
+    {
+      "src": "angular.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/catalogo-frontend2" }
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "https://catalogo-marvel-2.onrender.com/api/$1" },
-    { "src": "/(.*)", "dest": "/" }
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
