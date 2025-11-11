@@ -4,6 +4,9 @@
     <a routerLink="/peliculas/agregar" class="btn btn-success">Agregar Película</a>
   </div>
 
+  <!-- Solo para depurar -->
+  <pre *ngIf="movies.length > 0">{{ movies | json }}</pre>
+
   <div class="row g-4">
     <div class="col-md-4" *ngFor="let movie of movies">
       <div class="card shadow-sm h-100">
@@ -11,7 +14,7 @@
              [alt]="movie.title"
              class="card-img-top"
              style="height:300px; object-fit:cover;">
-        <div class="card-body">
+        <div class="card-body text-center">
           <h5 class="card-title">
             <a [routerLink]="['/peliculas', movie.id]">{{ movie.title }}</a>
           </h5>
