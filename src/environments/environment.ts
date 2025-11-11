@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8000/api' // tu backend local para pruebas
+  apiUrl: 'https://catalogo-marvel-2.onrender.com/api',
+  coverUrl: 'https://catalogo-marvel-2.onrender.com/covers/'
 };

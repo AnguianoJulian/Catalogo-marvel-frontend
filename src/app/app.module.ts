@@ -1,28 +1,36 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
+// Importa tus componentes
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { MoviesComponent } from './components/movies/movies.component';
-import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MoviesComponent,
+    AddMovieComponent,
     MovieDetailComponent,
-    AddMovieComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule
+    HttpClientModule,   // ✅ Importante para llamadas a la API
+    FormsModule,        // ✅ Para formularios template-driven
+    ReactiveFormsModule, // ✅ Para formularios reactivos
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'peliculas', component: MoviesComponent },
+      { path: 'peliculas/agregar', component: AddMovieComponent },
+      { path: 'peliculas/:id', component: MovieDetailComponent },
+      { path: '**', redirectTo: '' } // Ruta por defecto
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

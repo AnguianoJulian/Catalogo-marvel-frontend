@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://catalogo-marvel-2.onrender.com/api'
+  apiUrl: 'https://catalogo-marvel-2.onrender.com/api',
+  coverUrl: 'https://catalogo-marvel-2.onrender.com/covers/'
 };
