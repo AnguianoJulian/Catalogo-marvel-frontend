@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-movies',
@@ -9,25 +8,24 @@ import { environment } from '../../../environments/environment';
 })
 export class MoviesComponent implements OnInit {
   movies: any[] = [];
+  loading = true;
+  error = '';
 
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.loadMovies();
-  }
+    console.log('Componente Movies cargado');
 
-  loadMovies(): void {
     this.movieService.getMovies().subscribe({
       next: (data) => {
-        console.log('Películas desde API:', data);
-        this.movies = data.map(movie => ({
-          ...movie,
-          cover: `${environment.coverUrl}${movie.cover}`
-        }));
-        console.log('Películas procesadas:', this.movies);
+        console.log('Películas recibidas:', data);
+        this.movies = data;
+        this.loading = false;
       },
       error: (err) => {
-        console.error('Error al cargar películas:', err);
+        console.error('Error al obtener películas:', err);
+        this.error = 'No se pudieron cargar las películas.';
+        this.loading = false;
       }
     });
   }

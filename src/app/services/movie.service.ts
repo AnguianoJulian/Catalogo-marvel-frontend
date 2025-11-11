@@ -1,33 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = environment.apiUrl;
+  // URL del backend en Render (puedes cambiarla si lo corres en local)
+  private apiUrl = 'https://catalogo-marvel-backend.onrender.com/movies';
 
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/movies`);
-  }
-
-  getMovie(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/movies/${id}`);
-  }
-
-  addMovie(movie: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/movies`, movie);
-  }
-
-  updateMovie(id: number, movie: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/movies/${id}`, movie);
-  }
-
-  deleteMovie(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/movies/${id}`);
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
