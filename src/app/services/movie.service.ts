@@ -7,27 +7,28 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = environment.apiUrl;
+  // 🔧 Debe incluir el /api directamente
+  private apiUrl = `${environment.apiUrl}/movies`;
 
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/movies`);
+    return this.http.get<any[]>(this.apiUrl);
   }
 
   getMovie(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/movies/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
   addMovie(movie: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/movies`, movie);
+    return this.http.post(this.apiUrl, movie);
   }
 
   updateMovie(id: number, movie: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/movies/${id}`, movie);
+    return this.http.put(`${this.apiUrl}/${id}`, movie);
   }
 
   deleteMovie(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/movies/${id}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
